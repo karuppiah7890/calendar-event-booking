@@ -3,14 +3,17 @@
  */
 package calendar.event.booking;
 
-import java.time.Duration;
 import java.time.LocalTime;
 
 public class TimeSlot {
     private final LocalTime start;
     private final LocalTime end;
 
-    TimeSlot(LocalTime start, LocalTime end) {
+    TimeSlot(LocalTime start, LocalTime end) throws InvalidTimeSlotException {
+        if (start.isAfter(end)) {
+            throw new InvalidTimeSlotException("start time is greater than end time");
+        }
+
         this.start = start;
         this.end = end;
     }

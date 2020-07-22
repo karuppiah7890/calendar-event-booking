@@ -11,13 +11,32 @@ import java.time.LocalTime;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TimeSlotTest {
     @Nested
+    class Constructor {
+        @Test
+        void successfulWhenStartTimeIsLessThanEndTime() {
+            assertDoesNotThrow(() -> new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00")));
+        }
+
+        @Test
+        void successfulWhenStartTimeIsEqualToEndTime() {
+            assertDoesNotThrow(() -> new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("10:00")));
+        }
+
+        @Test
+        void unsuccessfulWhenStartTimeIsMoreThanEndTime() {
+            assertThrows(InvalidTimeSlotException.class, () -> new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("10:00")));
+        }
+    }
+
+    @Nested
     class CommonTimeSlot {
         @Test
-        void returnsNullWhenSlotsDontCoincideAtAll() {
+        void returnsNullWhenSlotsDontCoincideAtAll() throws InvalidTimeSlotException {
             TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
             TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("12:00"));
 

@@ -90,4 +90,11 @@ I just realized that in TimeSlot class, when we initialize start time and end ti
 we expect start time to be less than end time, if that's not the case, we need to
 see what to do in the constructor.
 
+https://stackoverflow.com/questions/6086334/is-it-good-practice-to-make-the-constructor-throw-an-exception
+
+Custom exceptions -
+https://www.javatpoint.com/custom-exception
+
+---
+
 
