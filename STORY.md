@@ -44,12 +44,50 @@ common.
 the common non-busy slots between two list of non-busy slots.
 4. With the output of 3, we can then find the duration of these slots.
 For this we need to have some code to find time difference based
-on the start and end time of the slot
+on the start and end time of the slot.
 5. With the output of 4, we can check if the duration of the meeting
 is less than or equal to the duration of the available non-busy
 slots, and if it is, then these are the suggested slots. If the any slot
 duration is more and not exactly equal to the meeting duration, we can
 find one slot within the time slot, based on the time duration and
 suggest it to the user.
+
+---
+
+I'm going to solve the most basic problem here, which is, find the
+common or intersection slot between two time slots.
+
+I'm introducing a time slot class, with start and end time
+
+The time data type can be `LocalTime` I think
+
+https://www.baeldung.com/java-8-date-time-intro
+https://www.baeldung.com/java-8-date-time-intro#2-working-with-localtime
+
+Using hamcrest to assert not null or null
+https://mkyong.com/unittest/hamcrest-how-to-assertthat-check-null-value/
+
+Adding hamcrest to gradle
+http://hamcrest.org/JavaHamcrest/distributables
+http://hamcrest.org/JavaHamcrest/distributables#using-hamcrest-in-a-gradle-project
+
+---
+
+One thing to note is - the operation common or intersection is a
+commutative operation, that is
+
+A ∩ B = B ∩ A
+
+In code, it is
+
+timeSlot.common(anotherTimeSlot) == anotherTimeSlot.common(timeSlot) // true 
+
+I need to write tests for these too later
+
+---
+
+I just realized that in TimeSlot class, when we initialize start time and end time,
+we expect start time to be less than end time, if that's not the case, we need to
+see what to do in the constructor.
 
 
