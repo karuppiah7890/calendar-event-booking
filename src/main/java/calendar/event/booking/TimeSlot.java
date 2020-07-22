@@ -4,6 +4,7 @@
 package calendar.event.booking;
 
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class TimeSlot {
     private final LocalTime start;
@@ -18,7 +19,15 @@ public class TimeSlot {
         this.end = end;
     }
 
+    TimeSlot(TimeSlot timeSlot) {
+        this.start = timeSlot.start;
+        this.end = timeSlot.end;
+    }
+
     public TimeSlot common(TimeSlot anotherTimeSlot) {
+        if (this.isSubset(anotherTimeSlot)) {
+            return new TimeSlot(this);
+        }
         return null;
     }
 
@@ -27,5 +36,19 @@ public class TimeSlot {
                 this.start.equals(anotherTimeSlot.start)) &&
                 (this.end.isBefore(anotherTimeSlot.end) ||
                         this.end.equals(anotherTimeSlot.end));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TimeSlot timeSlot = (TimeSlot) o;
+        return start.equals(timeSlot.start) &&
+                end.equals(timeSlot.end);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(start, end);
     }
 }

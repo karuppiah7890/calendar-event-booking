@@ -44,6 +44,17 @@ class TimeSlotTest {
 
             assertThat(common, is(nullValue()));
         }
+
+        @Test
+        void returnsSmallerTimeSlotWhenOneTimeSlotIsSubsetOfAnotherTimeSlot() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("12:00"));
+            TimeSlot expectedCommon = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+
+            TimeSlot common = timeSlot.common(anotherTimeSlot);
+
+            assertThat(common, is(expectedCommon));
+        }
     }
 
     @Nested

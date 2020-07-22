@@ -109,3 +109,14 @@ can be suggested to the user then! :)
 
 https://stackoverflow.com/questions/34571/how-do-i-test-a-private-function-or-a-class-that-has-private-methods-fields-or
 
+I'm using a copy of the timeslot as the result of common() method.
+
+https://www.baeldung.com/java-deep-copy
+
+I create the copy using copy constructor. Was planning to use clone()
+method, but it was tedious, and it wasn't necessary as LocalTime seems
+to be immutable, so any references to it getting copied is fine, as
+anyone having the reference cannot change the value however! :)
+
+I had to generate the equals and hashcode method using IntelliJ. The code
+looks quite good now! The assertions work!
