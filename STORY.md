@@ -97,4 +97,15 @@ https://www.javatpoint.com/custom-exception
 
 ---
 
+Now I'm thinking about - should I expose the subset method or not?
+This is part of the common method, which will internally use subset
+to tell if a time slot is a subset of another timeslot. Only if I
+expose, I can test various scenarios actually. Or may be not? common
+method brings in different scenarios. It will be easier to test
+subset separately. I think I'm just going to expose it. Later this
+method can be used to find different time slots which are subsets
+of another time slot, a non-busy one, so that the subset time slot
+can be suggested to the user then! :)
+
+https://stackoverflow.com/questions/34571/how-do-i-test-a-private-function-or-a-class-that-has-private-methods-fields-or
 

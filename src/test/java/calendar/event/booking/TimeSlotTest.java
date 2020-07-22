@@ -44,6 +44,18 @@ class TimeSlotTest {
 
             assertThat(common, is(nullValue()));
         }
+    }
 
+    @Nested
+    class SubsetTimeSlot {
+        @Test
+        void returnsFalseWhenSlotsDontCoincideAtAll() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("12:00"));
+
+            boolean isSubset = timeSlot.isSubset(anotherTimeSlot);
+
+            assertThat(isSubset, is(false));
+        }
     }
 }

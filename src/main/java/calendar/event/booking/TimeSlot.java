@@ -21,4 +21,8 @@ public class TimeSlot {
     public TimeSlot common(TimeSlot anotherTimeSlot) {
         return null;
     }
+
+    public boolean isSubset(TimeSlot anotherTimeSlot) {
+        return false;
+    }
 }
