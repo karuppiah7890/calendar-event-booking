@@ -57,5 +57,25 @@ class TimeSlotTest {
 
             assertThat(isSubset, is(false));
         }
+
+        @Test
+        void returnsTrueWhenTimeSlotIsASubset() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:30"), LocalTime.parse("11:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("12:00"));
+
+            boolean isSubset = timeSlot.isSubset(anotherTimeSlot);
+
+            assertThat(isSubset, is(true));
+        }
+
+        @Test
+        void returnsTrueWhenTimeSlotsAreEqual() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+
+            boolean isSubset = timeSlot.isSubset(anotherTimeSlot);
+
+            assertThat(isSubset, is(true));
+        }
     }
 }

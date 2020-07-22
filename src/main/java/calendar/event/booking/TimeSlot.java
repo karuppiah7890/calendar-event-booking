@@ -23,6 +23,9 @@ public class TimeSlot {
     }
 
     public boolean isSubset(TimeSlot anotherTimeSlot) {
-        return false;
+        return (this.start.isAfter(anotherTimeSlot.start) ||
+                this.start.equals(anotherTimeSlot.start)) &&
+                (this.end.isBefore(anotherTimeSlot.end) ||
+                        this.end.equals(anotherTimeSlot.end));
     }
 }
