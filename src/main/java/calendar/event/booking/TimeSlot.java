@@ -11,6 +11,12 @@ public class TimeSlot {
     private final LocalTime end;
 
     TimeSlot(LocalTime start, LocalTime end) throws InvalidTimeSlotException {
+        if (start == null) {
+            throw new InvalidTimeSlotException("start time is null");
+        }
+        if (end == null) {
+            throw new InvalidTimeSlotException("end time is null");
+        }
         if (start.isAfter(end)) {
             throw new InvalidTimeSlotException("start time is greater than end time");
         }

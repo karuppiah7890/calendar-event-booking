@@ -31,6 +31,16 @@ class TimeSlotTest {
         void unsuccessfulWhenStartTimeIsMoreThanEndTime() {
             assertThrows(InvalidTimeSlotException.class, () -> new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("10:00")));
         }
+
+        @Test
+        void unsuccessfulWhenStartTimeIsNull() {
+            assertThrows(InvalidTimeSlotException.class, () -> new TimeSlot(null, LocalTime.parse("10:00")));
+        }
+
+        @Test
+        void unsuccessfulWhenEndTimeIsNull() {
+            assertThrows(InvalidTimeSlotException.class, () -> new TimeSlot(LocalTime.parse("10:00"), null));
+        }
     }
 
     @Nested
