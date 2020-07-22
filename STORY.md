@@ -120,3 +120,14 @@ anyone having the reference cannot change the value however! :)
 
 I had to generate the equals and hashcode method using IntelliJ. The code
 looks quite good now! The assertions work!
+
+I also handled null start or end time, as the equals and hashcode method
+depend on these fields for their functioning and even if one of them
+is null, things can go crazy. I could have handled the null values
+in the equals or hashcode, however, come to think of it, it does NOT
+make sense to have a null start or null end in a time slot as that 
+does not have a meaning, so it's best to do it this way. Rather than
+handling possible null values everywhere - don't allow to create a time slot
+with null start or null end time.
+
+
