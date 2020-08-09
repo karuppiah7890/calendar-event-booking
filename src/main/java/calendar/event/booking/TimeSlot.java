@@ -30,7 +30,11 @@ public class TimeSlot {
         this.end = timeSlot.end;
     }
 
-    public TimeSlot common(TimeSlot anotherTimeSlot) {
+    public TimeSlot common(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
+        if (this.finishesBeforeStartingOf(anotherTimeSlot) || anotherTimeSlot.finishesBeforeStartingOf(this)) {
+            return null;
+        }
+
         if (this.isSubset(anotherTimeSlot)) {
             return new TimeSlot(this);
         }
@@ -39,7 +43,11 @@ public class TimeSlot {
             return new TimeSlot(anotherTimeSlot);
         }
 
-        return null;
+        if (this.start.isBefore(anotherTimeSlot.start)) {
+            return new TimeSlot(anotherTimeSlot.start, this.end);
+        }
+
+        return new TimeSlot(this.start, anotherTimeSlot.end);
     }
 
     public boolean isSubset(TimeSlot anotherTimeSlot) {

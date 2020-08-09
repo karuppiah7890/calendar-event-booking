@@ -66,6 +66,19 @@ class TimeSlotTest {
             assertThat(common, is(expectedCommon));
             assertThat(anotherCommon, is(expectedCommon));
         }
+
+        @Test
+        void returnsCommonTimeSlotWhenTimeSlotsCoincide() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("10:30"), LocalTime.parse("11:30"));
+            TimeSlot expectedCommon = new TimeSlot(LocalTime.parse("10:30"), LocalTime.parse("11:00"));
+
+            TimeSlot common = timeSlot.common(anotherTimeSlot);
+            TimeSlot anotherCommon = anotherTimeSlot.common(timeSlot);
+
+            assertThat(common, is(expectedCommon));
+            assertThat(anotherCommon, is(expectedCommon));
+        }
     }
 
     @Nested
