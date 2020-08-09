@@ -130,4 +130,10 @@ does not have a meaning, so it's best to do it this way. Rather than
 handling possible null values everywhere - don't allow to create a time slot
 with null start or null end time.
 
-
+I was thinking if it makes sense to have a time slot with start and end time
+equal. I mean, for the common method, for time slot 10:00 to 11:00 and
+11:00 to 12:00, is the result null or is it a time slot 11:00 to 11:00.
+The latter does NOT make sense. I might have to call that an
+invalid time slot too I guess, in the constructor that is. In the
+common method, make sure we return null, as the way I thought about it
+initially.
