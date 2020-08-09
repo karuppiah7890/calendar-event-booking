@@ -96,4 +96,27 @@ class TimeSlotTest {
             assertThat(isSubset, is(true));
         }
     }
+
+    @Nested
+    class FinishesBeforeStartingOfTimeSlot {
+        @Test
+        void returnsTrueWhenTimeSlotFinishesBeforeStartingOfAnotherTimeSlot() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:30"), LocalTime.parse("11:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("12:00"));
+
+            boolean isSubset = timeSlot.finishesBeforeStartingOf(anotherTimeSlot);
+
+            assertThat(isSubset, is(true));
+        }
+
+        @Test
+        void returnsFalseWhenTimeSlotDoesNotFinishBeforeStartingOfAnotherTimeSlot() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("12:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+
+            boolean isSubset = timeSlot.finishesBeforeStartingOf(anotherTimeSlot);
+
+            assertThat(isSubset, is(false));
+        }
+    }
 }

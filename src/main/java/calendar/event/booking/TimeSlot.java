@@ -58,4 +58,8 @@ public class TimeSlot {
     public int hashCode() {
         return Objects.hash(start, end);
     }
+
+    public boolean finishesBeforeStartingOf(TimeSlot anotherTimeSlot) {
+        return this.end.isBefore(anotherTimeSlot.start) || this.end.equals(anotherTimeSlot.start);
+    }
 }
