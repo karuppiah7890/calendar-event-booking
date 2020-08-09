@@ -48,8 +48,10 @@ class TimeSlotTest {
             TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("12:00"));
 
             TimeSlot common = timeSlot.common(anotherTimeSlot);
+            TimeSlot anotherCommon = anotherTimeSlot.common(timeSlot);
 
             assertThat(common, is(nullValue()));
+            assertThat(anotherCommon, is(nullValue()));
         }
 
         @Test
@@ -59,8 +61,10 @@ class TimeSlotTest {
             TimeSlot expectedCommon = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
 
             TimeSlot common = timeSlot.common(anotherTimeSlot);
+            TimeSlot anotherCommon = anotherTimeSlot.common(timeSlot);
 
             assertThat(common, is(expectedCommon));
+            assertThat(anotherCommon, is(expectedCommon));
         }
     }
 

@@ -35,6 +35,10 @@ public class TimeSlot {
             return new TimeSlot(this);
         }
 
+        if (anotherTimeSlot.isSubset(this)) {
+            return new TimeSlot(anotherTimeSlot);
+        }
+
         return null;
     }
 
