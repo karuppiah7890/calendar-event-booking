@@ -14,4 +14,8 @@ public class TimeSlots {
         }
         this.timeSlots = Collections.unmodifiableList(timeSlots);
     }
+
+    public TimeSlots gaps(TimeSlot boundary) {
+        return null;
+    }
 }

@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -26,6 +29,24 @@ class TimeSlotsTest {
             timeSlots.add(anotherTimeSlot);
 
             assertDoesNotThrow(() -> new TimeSlots(timeSlots));
+        }
+    }
+
+    @Nested
+    class Gaps {
+        @Test
+        void returnsNullWhenThereAreNoGaps() throws InvalidTimeSlotException, InvalidTimeSlotsException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("13:00"));
+            ArrayList<TimeSlot> timeSlotsList = new ArrayList<>();
+            timeSlotsList.add(timeSlot);
+            timeSlotsList.add(anotherTimeSlot);
+            TimeSlots timeSlots = new TimeSlots(timeSlotsList);
+            TimeSlot boundary = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("13:00"));
+
+            TimeSlots gaps = timeSlots.gaps(boundary);
+
+            assertThat(gaps, is(nullValue()));
         }
     }
 }
