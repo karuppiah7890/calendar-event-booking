@@ -51,6 +51,14 @@ public class TimeSlot {
     }
 
     public TimeSlot merge(TimeSlot anotherTimeSlot) {
+        if (this.isSubset(anotherTimeSlot)) {
+            return new TimeSlot(anotherTimeSlot);
+        }
+
+        if (anotherTimeSlot.isSubset(this)) {
+            return new TimeSlot(this);
+        }
+
         return null;
     }
 
