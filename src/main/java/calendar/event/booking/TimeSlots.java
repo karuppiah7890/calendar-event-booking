@@ -1,16 +1,17 @@
 package calendar.event.booking;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 // TimeSlots represents a list of time slots or a collection
 // of time slots
 public class TimeSlots {
-    private final ArrayList<TimeSlot> timeSlots;
+    private final List<TimeSlot> timeSlots;
 
-    public TimeSlots(ArrayList<TimeSlot> timeSlots) throws InvalidTimeSlotsException {
+    public TimeSlots(List<TimeSlot> timeSlots) throws InvalidTimeSlotsException {
         if (timeSlots == null) {
             throw new InvalidTimeSlotsException("time slots is null");
         }
-        this.timeSlots = timeSlots;
+        this.timeSlots = Collections.unmodifiableList(timeSlots);
     }
 }
