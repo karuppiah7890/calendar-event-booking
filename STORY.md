@@ -141,4 +141,10 @@ initially.
 Okay, I finally implemented all the common time slot logic that I had in
 my mind with tests too!
 
+---
 
+Next I want to introduce a list of time slots and introduce the concept of
+gaps - so that, given a list of time slots, we can find the gaps in it -
+why - because, let's say you have the busy time slots, you would need the
+gaps in it to find the free time slots, which you will later use for finding
+common time slots across everyone's free time slots
