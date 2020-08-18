@@ -137,3 +137,8 @@ The latter does NOT make sense. I might have to call that an
 invalid time slot too I guess, in the constructor that is. In the
 common method, make sure we return null, as the way I thought about it
 initially.
+
+Okay, I finally implemented all the common time slot logic that I had in
+my mind with tests too!
+
+
