@@ -163,5 +163,18 @@ class TimeSlotTest {
             assertThat(merged, is(expectedMerged));
             assertThat(anotherMerged, is(expectedMerged));
         }
+
+        @Test
+        void returnsMergedTimeSlotWhenTimeSlotsCoincide() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("10:30"), LocalTime.parse("11:30"));
+            TimeSlot expectedMerged = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:30"));
+
+            TimeSlot merged = timeSlot.merge(anotherTimeSlot);
+            TimeSlot anotherMerged = anotherTimeSlot.merge(timeSlot);
+
+            assertThat(merged, is(expectedMerged));
+            assertThat(anotherMerged, is(expectedMerged));
+        }
     }
 }

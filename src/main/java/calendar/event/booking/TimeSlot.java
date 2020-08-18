@@ -50,7 +50,11 @@ public class TimeSlot {
         return new TimeSlot(this.start, anotherTimeSlot.end);
     }
 
-    public TimeSlot merge(TimeSlot anotherTimeSlot) {
+    public TimeSlot merge(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
+        if (this.finishesBeforeStartingOf(anotherTimeSlot) || anotherTimeSlot.finishesBeforeStartingOf(this)) {
+            return null;
+        }
+
         if (this.isSubset(anotherTimeSlot)) {
             return new TimeSlot(anotherTimeSlot);
         }
@@ -59,7 +63,11 @@ public class TimeSlot {
             return new TimeSlot(this);
         }
 
-        return null;
+        if (this.start.isBefore(anotherTimeSlot.start)) {
+            return new TimeSlot(this.start, anotherTimeSlot.end);
+        }
+
+        return new TimeSlot(anotherTimeSlot.start, this.end);
     }
 
     public boolean isSubset(TimeSlot anotherTimeSlot) {
