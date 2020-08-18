@@ -51,7 +51,7 @@ public class TimeSlot {
     }
 
     public TimeSlot merge(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
-        if (this.finishesBeforeStartingOf(anotherTimeSlot) || anotherTimeSlot.finishesBeforeStartingOf(this)) {
+        if (this.end.isBefore(anotherTimeSlot.start) || anotherTimeSlot.end.isBefore(this.start)) {
             return null;
         }
 
