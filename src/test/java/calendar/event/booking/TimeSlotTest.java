@@ -136,4 +136,19 @@ class TimeSlotTest {
             assertThat(isSubset, is(false));
         }
     }
+
+    @Nested
+    class Merge {
+        @Test
+        void returnsNullWhenSlotsDontCoincideAtAll() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("13:00"));
+
+            TimeSlot merged = timeSlot.merge(anotherTimeSlot);
+            TimeSlot anotherMerged = anotherTimeSlot.merge(timeSlot);
+
+            assertThat(merged, is(nullValue()));
+            assertThat(anotherMerged, is(nullValue()));
+        }
+    }
 }

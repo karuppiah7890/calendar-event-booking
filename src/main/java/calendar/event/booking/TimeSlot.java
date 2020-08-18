@@ -50,6 +50,10 @@ public class TimeSlot {
         return new TimeSlot(this.start, anotherTimeSlot.end);
     }
 
+    public TimeSlot merge(TimeSlot anotherTimeSlot) {
+        return null;
+    }
+
     public boolean isSubset(TimeSlot anotherTimeSlot) {
         return (this.start.isAfter(anotherTimeSlot.start) ||
                 this.start.equals(anotherTimeSlot.start)) &&

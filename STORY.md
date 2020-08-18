@@ -148,3 +148,50 @@ gaps - so that, given a list of time slots, we can find the gaps in it -
 why - because, let's say you have the busy time slots, you would need the
 gaps in it to find the free time slots, which you will later use for finding
 common time slots across everyone's free time slots
+
+---
+
+Some more ideas I had -
+
+Sort busy time slots by slot start times
+
+Merge consecutive slots if they have common time slots. It can be called merge / union.
+
+Now we have all timeslots that have nothing in common, from consecutive timeslots, find the gap in them. These
+are free timeslots.
+
+Now get the free timeslots of all people and take common among these lists to get free timeslots for all the people
+
+With the free timeslots, compare the meeting duration with the duration free timeslots. Any timeslot that can
+accommodate the duration should be filtered in and given as output.
+
+From these timeslots, we can choose a timeslot for the meeting duration. For starters, we
+can use start time of free timeslot + meeting duration time, if free timeslots are bigger.
+Later, we can also show the free timeslots available and ask users to type some timeslot
+from them in case they want to choose one themselves
+
+---
+
+Some more thoughts -
+
+We need to be able to do the following actions
+- Sorting time slots based on start time
+- Smoothening / Merging of overlapping time slots or time slots which are close by, like
+stuck to each other
+
+One case to handle - boundary time slot bigger and smaller than the list of time slots that
+are there.
+
+---
+
+We need to write a method to help with the smoothening of time slots
+
+---
+
+We also need to use `List.of()` to create lists easily and succinctly. It creates an
+unmodifiable list too!
+
+---
+
+Before writing a method for smoothening / merging the time slots in TimeSlots class, we need to write
+a merge method in the TimeSlot class!
