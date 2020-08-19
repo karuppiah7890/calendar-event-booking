@@ -195,3 +195,35 @@ unmodifiable list too!
 
 Before writing a method for smoothening / merging the time slots in TimeSlots class, we need to write
 a merge method in the TimeSlot class!
+
+---
+
+I have written the merge method in TimeSlot class now
+
+---
+
+Some more thoughts I had - 
+
+Find the boundary of everyone's working hours. Find the common of it all and use that as the boundary for everyone
+to find gaps. OR fir each person, use their own boundary. If it's common for all, all cool! :)
+
+Find free slots that can accommodate everyone
+
+From algorithm point of view, it's safe to ignore any free slot that can't accommodate the meeting duration,
+UNLESS there's a requirement that the meeting duration could be tweaked a bit to accommodate more people or
+even everyone, or else, it can just be blindly ignored
+
+If we cannot accommodate everyone, first check who all have NO or ZERO free slots that can accommodate
+the meeting for its duration. Ignore them.
+
+Now for others, who do have free slots long enough for the meeting, we have to either see priority of
+people OR see which slot can accommodate the max number of people, for which common slots for different
+combination of people have to be checked.
+One thing that can be done is, for every free slot, big enough to accommodate a meeting, we can see how
+many other free slots if others have something in common with it that can accommodate the meeting. Have
+to see how many comparisons have to be done though. We could also sort the list of list of timeslots
+based on this one timeslot, and it's friends on other people's free timeslots around the same time. The
+wider and common it is for people, better, the thinner it gets, lesser common timeslot and less
+possibility of meeting of the least duration common timeslot is smaller than meeting duration.
+
+---
