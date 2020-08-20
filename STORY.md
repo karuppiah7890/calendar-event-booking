@@ -227,3 +227,8 @@ wider and common it is for people, better, the thinner it gets, lesser common ti
 possibility of meeting of the least duration common timeslot is smaller than meeting duration.
 
 ---
+
+Now we have to write a method to smoothen the time slots that we have. Not sure if this should be a
+mutating operation or a non mutating operation. Hmm. Mutating is easier. Do it once and don't have to
+do it again. However it's OOPS. It doesn't make sense to not store state. If I didn't want state, then
+I could do everything with static methods and no class members. Hmm

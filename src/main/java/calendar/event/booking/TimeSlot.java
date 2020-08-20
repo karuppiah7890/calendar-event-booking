@@ -30,6 +30,14 @@ public class TimeSlot {
         this.end = timeSlot.end;
     }
 
+    public LocalTime getStart() {
+        return start;
+    }
+
+    public LocalTime getEnd() {
+        return end;
+    }
+
     public TimeSlot common(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
         if (this.finishesBeforeStartingOf(anotherTimeSlot) || anotherTimeSlot.finishesBeforeStartingOf(this)) {
             return null;

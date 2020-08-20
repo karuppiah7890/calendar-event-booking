@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -47,6 +48,20 @@ class TimeSlotsTest {
             TimeSlots gaps = timeSlots.gaps(boundary);
 
             assertThat(gaps, is(nullValue()));
+        }
+
+        @Test
+        void returnsOneGapWhenThereIsOneGap() throws InvalidTimeSlotException, InvalidTimeSlotsException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("13:00"));
+            TimeSlots timeSlots = new TimeSlots(List.of(timeSlot, anotherTimeSlot));
+            TimeSlot gap = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("12:00"));
+            TimeSlots expectedGaps = new TimeSlots(List.of(gap));
+            TimeSlot boundary = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("13:00"));
+
+            TimeSlots gaps = timeSlots.gaps(boundary);
+
+            assertThat(gaps, is(expectedGaps));
         }
     }
 }
