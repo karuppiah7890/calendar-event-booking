@@ -232,3 +232,20 @@ Now we have to write a method to smoothen the time slots that we have. Not sure 
 mutating operation or a non mutating operation. Hmm. Mutating is easier. Do it once and don't have to
 do it again. However it's OOPS. It doesn't make sense to not store state. If I didn't want state, then
 I could do everything with static methods and no class members. Hmm
+
+---
+
+I have found gaps after sorting. There's still two things left out -
+* Smoothening input time slots in case they are overlapping. It's easier
+to do this, if it's all sorted.
+* Cutting out parts of time slots that are outside the boundary, so that
+the process of finding gaps is easier. It's easier to do this if it's all
+sorted. We can do the smoothening first. But it doesn't make sense to
+smoothen if it's outside the boundaries. Too much effort. Hmm. We could
+then cut out parts first. To do this, we need to see if the time slots
+and the boundary time slot have anything in common, if no, we cut it
+off, if it does have anything in common, we take the common thing
+and keep that alone and get rid of the remaining. If the time slot
+is a subset of the boundary, we take it completely.  
+
+
