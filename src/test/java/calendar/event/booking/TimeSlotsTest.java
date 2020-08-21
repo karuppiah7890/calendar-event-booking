@@ -51,7 +51,7 @@ class TimeSlotsTest {
         }
 
         @Test
-        void returnsOneGapWhenThereIsOneGap() throws InvalidTimeSlotException, InvalidTimeSlotsException {
+        void returnsOneGapWhenThereIsOneGapInBetween() throws InvalidTimeSlotException, InvalidTimeSlotsException {
             TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
             TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("13:00"));
             TimeSlots timeSlots = new TimeSlots(List.of(timeSlot, anotherTimeSlot));
@@ -65,7 +65,7 @@ class TimeSlotsTest {
         }
 
         @Test
-        void returnsTwoGapsWhenThereAreTwoGaps() throws InvalidTimeSlotException, InvalidTimeSlotsException {
+        void returnsTwoGapsWhenThereAreTwoGapsWithOneAtTheEnd() throws InvalidTimeSlotException, InvalidTimeSlotsException {
             TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
             TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("13:00"));
             TimeSlots timeSlots = new TimeSlots(List.of(timeSlot, anotherTimeSlot));
