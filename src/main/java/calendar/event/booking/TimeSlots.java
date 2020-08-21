@@ -1,10 +1,7 @@
 package calendar.event.booking;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 // TimeSlots represents a list of time slots or a collection
 // of time slots
@@ -34,8 +31,11 @@ public class TimeSlots {
     public TimeSlots gaps(TimeSlot boundary) throws InvalidTimeSlotException, InvalidTimeSlotsException {
         List<TimeSlot> slotGaps = new ArrayList<>();
         LocalTime gapStart = boundary.getStart();
+        List<TimeSlot> sortedTimeSlots = new ArrayList<>(timeSlots);
 
-        for (TimeSlot timeSlot : timeSlots) {
+        sortedTimeSlots.sort(Comparator.comparing(TimeSlot::getStart));
+
+        for (TimeSlot timeSlot : sortedTimeSlots) {
             LocalTime gapEnd = timeSlot.getStart();
 
             if (!gapStart.equals(gapEnd)) {

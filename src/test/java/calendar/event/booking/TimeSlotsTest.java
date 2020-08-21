@@ -78,5 +78,22 @@ class TimeSlotsTest {
 
             assertThat(gaps, is(expectedGaps));
         }
+
+        @Test
+        void returnsGapsSortedByStartTimeWhenTheInputTimeSlotsAreUnordered() throws InvalidTimeSlotException, InvalidTimeSlotsException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("10:30"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("12:30"));
+            TimeSlot yetAnotherTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("11:45"));
+            TimeSlots timeSlots = new TimeSlots(List.of(timeSlot, anotherTimeSlot, yetAnotherTimeSlot));
+            TimeSlot firstGap = new TimeSlot(LocalTime.parse("10:30"), LocalTime.parse("11:00"));
+            TimeSlot secondGap = new TimeSlot(LocalTime.parse("11:45"), LocalTime.parse("12:00"));
+            TimeSlot thirdGap = new TimeSlot(LocalTime.parse("12:30"), LocalTime.parse("13:00"));
+            TimeSlots expectedGaps = new TimeSlots(List.of(firstGap, secondGap, thirdGap));
+            TimeSlot boundary = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("13:00"));
+
+            TimeSlots gaps = timeSlots.gaps(boundary);
+
+            assertThat(gaps, is(expectedGaps));
+        }
     }
 }
