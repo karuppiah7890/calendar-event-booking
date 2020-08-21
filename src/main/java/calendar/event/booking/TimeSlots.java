@@ -45,6 +45,10 @@ public class TimeSlots {
             gapStart = timeSlot.getEnd();
         }
 
+        if (!gapStart.equals(boundary.getEnd())) {
+            slotGaps.add(new TimeSlot(gapStart, boundary.getEnd()));
+        }
+
         if (slotGaps.isEmpty()) {
             return null;
         }
