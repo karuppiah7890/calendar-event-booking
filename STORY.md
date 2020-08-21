@@ -246,6 +246,7 @@ then cut out parts first. To do this, we need to see if the time slots
 and the boundary time slot have anything in common, if no, we cut it
 off, if it does have anything in common, we take the common thing
 and keep that alone and get rid of the remaining. If the time slot
-is a subset of the boundary, we take it completely.  
+is a subset of the boundary, we take it completely.
 
-
+Sorting array list -   
+https://stackoverflow.com/questions/23701943/sorting-arraylist-with-lambda-in-java-8#23702076
