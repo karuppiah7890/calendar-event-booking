@@ -130,4 +130,8 @@ public class TimeSlot {
         }
         return new TimeSlot(anotherTimeSlot.end, this.start);
     }
+
+    public TimeSlot endTimeGap(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
+        return new TimeSlot(anotherTimeSlot.end, this.end);
+    }
 }

@@ -246,4 +246,18 @@ class TimeSlotTest {
             assertThat(anotherStartTimeGap, is(nullValue()));
         }
     }
+
+    @Nested
+    class EndTimeGap {
+        @Test
+        void returnsGapWhenThereIsOne() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("13:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("12:00"));
+            TimeSlot expectedEndTimeGap = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("13:00"));
+
+            TimeSlot endTimeGap = timeSlot.endTimeGap(anotherTimeSlot);
+
+            assertThat(endTimeGap, is(expectedEndTimeGap));
+        }
+    }
 }
