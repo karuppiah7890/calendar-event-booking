@@ -43,6 +43,10 @@ public class TimeSlots {
     }
 
     public TimeSlots gaps(TimeSlot boundary) throws InvalidTimeSlotException, InvalidTimeSlotsException {
+        if (boundary == null) {
+            return null;
+        }
+
         if (slots.isEmpty()) {
             return new TimeSlots(List.of(boundary));
         }
