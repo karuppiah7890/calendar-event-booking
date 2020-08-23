@@ -261,5 +261,17 @@ class TimeSlotTest {
             assertThat(endTimeGap, is(expectedEndTimeGap));
             assertThat(anotherEndTimeGap, is(expectedEndTimeGap));
         }
+
+        @Test
+        void returnsNullWhenThereIsNoGap() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("13:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("13:00"));
+
+            TimeSlot endTimeGap = timeSlot.endTimeGap(anotherTimeSlot);
+            TimeSlot anotherEndTimeGap = anotherTimeSlot.endTimeGap(timeSlot);
+
+            assertThat(endTimeGap, is(nullValue()));
+            assertThat(anotherEndTimeGap, is(nullValue()));
+        }
     }
 }
