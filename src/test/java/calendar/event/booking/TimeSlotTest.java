@@ -256,8 +256,10 @@ class TimeSlotTest {
             TimeSlot expectedEndTimeGap = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("13:00"));
 
             TimeSlot endTimeGap = timeSlot.endTimeGap(anotherTimeSlot);
+            TimeSlot anotherEndTimeGap = anotherTimeSlot.endTimeGap(timeSlot);
 
             assertThat(endTimeGap, is(expectedEndTimeGap));
+            assertThat(anotherEndTimeGap, is(expectedEndTimeGap));
         }
     }
 }
