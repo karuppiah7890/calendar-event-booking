@@ -119,4 +119,15 @@ public class TimeSlots {
 
         return new TimeSlots(commonSlots);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder data = new StringBuilder();
+        for (TimeSlot slot : slots) {
+            data.append("* ");
+            data.append(slot.toString());
+            data.append("\n");
+        }
+        return data.toString();
+    }
 }

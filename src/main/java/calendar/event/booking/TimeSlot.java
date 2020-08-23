@@ -125,6 +125,11 @@ public class TimeSlot {
         return new TimeSlot(anotherTimeSlot.end, this.start);
     }
 
+    @Override
+    public String toString() {
+        return start + " to " + end;
+    }
+
     public TimeSlot endTimeGap(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
         if (anotherTimeSlot == null) {
             return null;

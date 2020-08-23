@@ -328,3 +328,26 @@ to Optional based on what I find.
 ---
 
 Gotta dig through null checks and possibilities of nulls in different places!
+
+---
+
+I wrote some tests for null checks
+
+---
+
+I just checked how to parse duration if given a string
+
+I saw the Java code and there's also this
+
+https://www.logicbig.com/how-to/code-snippets/jcode-java-8-date-time-api-duration-parse.html
+
+I'm just going to ask the user to type the meeting duration in minutes!
+
+---
+
+Scanner stuff - https://duckduckgo.com/?t=ffab&q=java+scanner+nextline&ia=web
+https://www.javatpoint.com/post/java-scanner-nextline-method
+https://www.geeksforgeeks.org/scanner-nextline-method-in-java-with-examples/
+https://www.tutorialspoint.com/java/util/scanner_nextline.htm
+
+https://www.geeksforgeeks.org/ways-to-read-input-from-console-in-java/
