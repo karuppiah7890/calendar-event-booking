@@ -229,8 +229,10 @@ class TimeSlotTest {
             TimeSlot expectedStartTimeGap = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
 
             TimeSlot startTimeGap = timeSlot.startTimeGap(anotherTimeSlot);
+            TimeSlot anotherStartTimeGap = anotherTimeSlot.startTimeGap(timeSlot);
 
             assertThat(startTimeGap, is(expectedStartTimeGap));
+            assertThat(anotherStartTimeGap, is(expectedStartTimeGap));
         }
     }
 }
