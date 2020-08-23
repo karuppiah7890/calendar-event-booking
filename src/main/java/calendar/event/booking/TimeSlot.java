@@ -112,6 +112,9 @@ public class TimeSlot {
     }
 
     public TimeSlot startTimeGap(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
+        if (this.start.equals(anotherTimeSlot.start)) {
+            return null;
+        }
         if (this.start.isBefore(anotherTimeSlot.start)) {
             return new TimeSlot(this.start, anotherTimeSlot.start);
         }
