@@ -110,6 +110,9 @@ public class TimeSlot {
     }
 
     public TimeSlot gap(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
+        if (anotherTimeSlot == null) {
+            return null;
+        }
         if (this.doesNotHaveGap(anotherTimeSlot)) {
             return null;
         }
