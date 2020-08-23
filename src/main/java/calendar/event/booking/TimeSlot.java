@@ -59,7 +59,7 @@ public class TimeSlot {
     }
 
     public TimeSlot merge(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
-        if (this.end.isBefore(anotherTimeSlot.start) || anotherTimeSlot.end.isBefore(this.start)) {
+        if (hasGap(anotherTimeSlot)) {
             return null;
         }
 
@@ -76,6 +76,14 @@ public class TimeSlot {
         }
 
         return new TimeSlot(anotherTimeSlot.start, this.end);
+    }
+
+    private boolean hasGap(TimeSlot anotherTimeSlot) {
+        return this.end.isBefore(anotherTimeSlot.start) || anotherTimeSlot.end.isBefore(this.start);
+    }
+
+    private boolean doesNotHaveGap(TimeSlot anotherTimeSlot) {
+        return !this.hasGap(anotherTimeSlot);
     }
 
     public boolean isSubset(TimeSlot anotherTimeSlot) {
@@ -104,6 +112,9 @@ public class TimeSlot {
     }
 
     public TimeSlot gap(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
+        if (this.doesNotHaveGap(anotherTimeSlot)) {
+            return null;
+        }
         if (this.end.isBefore(anotherTimeSlot.start)) {
             return new TimeSlot(this.end, anotherTimeSlot.start);
         }
