@@ -283,3 +283,14 @@ Just do common method over all time slots with the boundary and store it maybe?
 That's better!! As common has all this logic!
 
 ---
+
+Slots within the boundary are retained now, and others chucked.
+
+Next is, smoothening overlapping time slots.
+
+Looks like smoothening may not be needed with the current algorithm to
+find the gaps. Wow! :D
+
+If I try to do smoothening now, it's only a waste of computation to do
+something extra with an extra traversal of the list of slots, when the
+existing algorithm is able to take care of things!
