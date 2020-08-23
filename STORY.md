@@ -262,4 +262,8 @@ TimeSlot gap method - should be commutative
 
 ---
 
-Reduce the size of all methods to 5 lines or so
+Try to reduce the size of all methods to 5 lines or so
+
+---
+
+https://www.baeldung.com/java-iterate-list
