@@ -36,6 +36,10 @@ public class TimeSlot {
     }
 
     public TimeSlot common(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
+        if (anotherTimeSlot == null) {
+            return null;
+        }
+
         if (this.doesNotHaveCommon(anotherTimeSlot)) {
             return null;
         }

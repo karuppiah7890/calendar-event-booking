@@ -79,6 +79,15 @@ class TimeSlotTest {
             assertThat(common, is(expectedCommon));
             assertThat(anotherCommon, is(expectedCommon));
         }
+
+        @Test
+        void returnsNullWhenPassedSlotIsNull() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+
+            TimeSlot common = timeSlot.common(null);
+
+            assertThat(common, is(nullValue()));
+        }
     }
 
     @Nested
