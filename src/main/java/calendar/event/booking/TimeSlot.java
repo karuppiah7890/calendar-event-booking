@@ -140,4 +140,8 @@ public class TimeSlot {
         }
         return new TimeSlot(anotherTimeSlot.end, this.end);
     }
+
+    public int compareStartTimeTo(TimeSlot anotherTimeSlot) {
+        return this.start.compareTo(anotherTimeSlot.start);
+    }
 }
