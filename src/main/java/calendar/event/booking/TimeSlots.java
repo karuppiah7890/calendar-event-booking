@@ -1,6 +1,5 @@
 package calendar.event.booking;
 
-import java.time.LocalTime;
 import java.util.*;
 
 // TimeSlots represents a list of time slots or a collection
@@ -30,23 +29,32 @@ public class TimeSlots {
 
     public TimeSlots gaps(TimeSlot boundary) throws InvalidTimeSlotException, InvalidTimeSlotsException {
         List<TimeSlot> slotGaps = new ArrayList<>();
-        LocalTime gapStart = boundary.getStart();
         List<TimeSlot> sortedTimeSlots = new ArrayList<>(timeSlots);
-
         sortedTimeSlots.sort(Comparator.comparing(TimeSlot::getStart));
 
-        for (TimeSlot timeSlot : sortedTimeSlots) {
-            LocalTime gapEnd = timeSlot.getStart();
-
-            if (!gapStart.equals(gapEnd)) {
-                slotGaps.add(new TimeSlot(gapStart, gapEnd));
-            }
-
-            gapStart = timeSlot.getEnd();
+        TimeSlot firstSlot = sortedTimeSlots.get(0);
+        TimeSlot firstGap = boundary.startTimeGap(firstSlot);
+        if (firstGap != null) {
+            slotGaps.add(firstGap);
         }
 
-        if (!gapStart.equals(boundary.getEnd())) {
-            slotGaps.add(new TimeSlot(gapStart, boundary.getEnd()));
+        TimeSlot previousSlot = firstSlot;
+
+        for (int i = 1; i < sortedTimeSlots.size(); i++) {
+            TimeSlot currentSlot = sortedTimeSlots.get(i);
+
+            TimeSlot gap = previousSlot.gap(currentSlot);
+            if (gap != null) {
+                slotGaps.add(gap);
+            }
+
+            previousSlot = currentSlot;
+        }
+
+        TimeSlot lastSlot = sortedTimeSlots.get(sortedTimeSlots.size() - 1);
+        TimeSlot lastGap = lastSlot.endTimeGap(boundary);
+        if (lastGap != null) {
+            slotGaps.add(lastGap);
         }
 
         if (slotGaps.isEmpty()) {
