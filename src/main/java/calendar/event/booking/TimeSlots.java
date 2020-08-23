@@ -55,6 +55,10 @@ public class TimeSlots {
             }
         }
 
+        if (slotsWithinBoundary.isEmpty()) {
+            return new TimeSlots(List.of(boundary));
+        }
+
         List<TimeSlot> slotGaps = new ArrayList<>();
         List<TimeSlot> sortedSlots = new ArrayList<>(slotsWithinBoundary);
         sortedSlots.sort(TimeSlot::compareStartTimeTo);

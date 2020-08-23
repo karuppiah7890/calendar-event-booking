@@ -45,6 +45,18 @@ class TimeSlotsTest {
         }
 
         @Test
+        void returnsBoundaryWhenThereAreNoSlotsWithinBoundary() throws InvalidTimeSlotException, InvalidTimeSlotsException {
+            TimeSlot firstSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("10:30"));
+            TimeSlots timeSlots = new TimeSlots(List.of(firstSlot));
+            TimeSlot boundary = new TimeSlot(LocalTime.parse("08:00"), LocalTime.parse("09:00"));
+            TimeSlots expectedGaps = new TimeSlots(List.of(boundary));
+
+            TimeSlots gaps = timeSlots.gaps(boundary);
+
+            assertThat(gaps, is(expectedGaps));
+        }
+
+        @Test
         void returnsNullWhenThereAreNoGaps() throws InvalidTimeSlotException, InvalidTimeSlotsException {
             TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
             TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("13:00"));
