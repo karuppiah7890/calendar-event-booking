@@ -89,6 +89,11 @@ public class TimeSlots {
                 }
             }
         }
+
+        if (commonSlots.isEmpty()) {
+            return null;
+        }
+
         return new TimeSlots(commonSlots);
     }
 }

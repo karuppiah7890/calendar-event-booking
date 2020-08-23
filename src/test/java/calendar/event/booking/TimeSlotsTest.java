@@ -164,5 +164,21 @@ class TimeSlotsTest {
             assertThat(common, is(expectedCommon));
             assertThat(anotherCommon, is(expectedCommon));
         }
+
+        @Test
+        void returnsNullTimeSlotWhenThereIsNone() throws InvalidTimeSlotException, InvalidTimeSlotsException {
+            TimeSlot firstTimeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot secondTimeSlot = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("13:00"));
+            TimeSlots timeSlots = new TimeSlots(List.of(firstTimeSlot, secondTimeSlot));
+            TimeSlot thirdTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("11:30"));
+            TimeSlot fourthTimeSlot = new TimeSlot(LocalTime.parse("11:30"), LocalTime.parse("12:00"));
+            TimeSlots anotherTimeSlots = new TimeSlots(List.of(thirdTimeSlot, fourthTimeSlot));
+
+            TimeSlots common = timeSlots.common(anotherTimeSlots);
+            TimeSlots anotherCommon = anotherTimeSlots.common(timeSlots);
+
+            assertThat(common, is(nullValue()));
+            assertThat(anotherCommon, is(nullValue()));
+        }
     }
 }
