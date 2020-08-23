@@ -31,6 +31,9 @@ public class TimeSlots {
     }
 
     public TimeSlots gaps(TimeSlot boundary) throws InvalidTimeSlotException, InvalidTimeSlotsException {
+        if (timeSlots.isEmpty()) {
+            return new TimeSlots(List.of(boundary));
+        }
         List<TimeSlot> slotGaps = new ArrayList<>();
         List<TimeSlot> sortedTimeSlots = new ArrayList<>(timeSlots);
         sortedTimeSlots.sort(TimeSlot::compareStartTimeTo);
