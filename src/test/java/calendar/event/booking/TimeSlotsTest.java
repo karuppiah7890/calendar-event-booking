@@ -25,11 +25,8 @@ class TimeSlotsTest {
         void successfulWhenTimeSlotsIsNull() throws InvalidTimeSlotException {
             TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
             TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("13:00"));
-            ArrayList<TimeSlot> timeSlots = new ArrayList<>();
-            timeSlots.add(timeSlot);
-            timeSlots.add(anotherTimeSlot);
 
-            assertDoesNotThrow(() -> new TimeSlots(timeSlots));
+            assertDoesNotThrow(() -> new TimeSlots(List.of(timeSlot, anotherTimeSlot)));
         }
     }
 
@@ -51,10 +48,7 @@ class TimeSlotsTest {
         void returnsNullWhenThereAreNoGaps() throws InvalidTimeSlotException, InvalidTimeSlotsException {
             TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
             TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("13:00"));
-            ArrayList<TimeSlot> timeSlotsList = new ArrayList<>();
-            timeSlotsList.add(timeSlot);
-            timeSlotsList.add(anotherTimeSlot);
-            TimeSlots timeSlots = new TimeSlots(timeSlotsList);
+            TimeSlots timeSlots = new TimeSlots(List.of(timeSlot, anotherTimeSlot));
             TimeSlot boundary = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("13:00"));
 
             TimeSlots gaps = timeSlots.gaps(boundary);
