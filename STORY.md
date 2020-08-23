@@ -250,3 +250,16 @@ is a subset of the boundary, we take it completely.
 
 Sorting array list -   
 https://stackoverflow.com/questions/23701943/sorting-arraylist-with-lambda-in-java-8#23702076
+
+---
+
+Get rid of getters in TimeSlot. For this:
+
+TimeSlot startTimeDifference method
+TimeSlot endTimeDifference method
+
+TimeSlot gap method - should be commutative
+
+---
+
+Reduce the size of all methods to 5 lines or so
