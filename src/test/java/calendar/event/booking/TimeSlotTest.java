@@ -227,6 +227,15 @@ class TimeSlotTest {
             assertThat(startTimeGap, is(nullValue()));
             assertThat(anotherStartTimeGap, is(nullValue()));
         }
+
+        @Test
+        void returnsNullWhenTheTimeSlotIsNull() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("13:00"));
+
+            TimeSlot startTimeGap = timeSlot.startTimeGap(null);
+
+            assertThat(startTimeGap, is(nullValue()));
+        }
     }
 
     @Nested

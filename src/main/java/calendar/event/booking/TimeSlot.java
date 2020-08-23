@@ -100,6 +100,9 @@ public class TimeSlot {
     }
 
     public TimeSlot startTimeGap(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
+        if (anotherTimeSlot == null) {
+            return null;
+        }
         if (this.start.equals(anotherTimeSlot.start)) {
             return null;
         }
