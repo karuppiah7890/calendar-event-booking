@@ -200,8 +200,10 @@ class TimeSlotTest {
             TimeSlot expectedGap = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("11:30"));
 
             TimeSlot gap = timeSlot.gap(anotherTimeSlot);
+            TimeSlot anotherGap = anotherTimeSlot.gap(timeSlot);
 
             assertThat(gap, is(expectedGap));
+            assertThat(anotherGap, is(expectedGap));
         }
     }
 }
