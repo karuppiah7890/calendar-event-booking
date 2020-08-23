@@ -294,3 +294,17 @@ find the gaps. Wow! :D
 If I try to do smoothening now, it's only a waste of computation to do
 something extra with an extra traversal of the list of slots, when the
 existing algorithm is able to take care of things!
+
+---
+
+I have also added a common method to the TimeSlots class now
+
+---
+
+Adding a duration method to Time Slot class
+
+Checked out these examples
+
+https://stackoverflow.com/questions/28353725/java-subtract-localtime#28353857
+http://tutorials.jenkov.com/java-date-time/duration.html
+https://mkyong.com/java8/java-8-period-and-duration-examples/

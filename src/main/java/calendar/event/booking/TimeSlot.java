@@ -1,5 +1,6 @@
 package calendar.event.booking;
 
+import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -139,5 +140,9 @@ public class TimeSlot {
 
     public int compareStartTimeTo(TimeSlot anotherTimeSlot) {
         return this.start.compareTo(anotherTimeSlot.start);
+    }
+
+    public Duration duration() {
+        return Duration.between(this.start, this.end);
     }
 }
