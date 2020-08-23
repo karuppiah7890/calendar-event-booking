@@ -102,4 +102,8 @@ public class TimeSlot {
     public boolean finishesBeforeStartingOf(TimeSlot anotherTimeSlot) {
         return this.end.isBefore(anotherTimeSlot.start) || this.end.equals(anotherTimeSlot.start);
     }
+
+    public TimeSlot gap(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
+        return new TimeSlot(this.end, anotherTimeSlot.start);
+    }
 }

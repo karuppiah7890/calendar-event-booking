@@ -190,4 +190,18 @@ class TimeSlotTest {
             assertThat(anotherMerged, is(expectedMerged));
         }
     }
+
+    @Nested
+    class gap {
+        @Test
+        void returnsGapWhenThereIsOneGap() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("11:30"), LocalTime.parse("12:00"));
+            TimeSlot expectedGap = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("11:30"));
+
+            TimeSlot gap = timeSlot.gap(anotherTimeSlot);
+
+            assertThat(gap, is(expectedGap));
+        }
+    }
 }
