@@ -8,13 +8,13 @@ import java.util.Objects;
 // TimeSlots represents a list of time slots or a collection
 // of time slots
 public class TimeSlots {
-    private final List<TimeSlot> timeSlots;
+    private final List<TimeSlot> slots;
 
-    public TimeSlots(List<TimeSlot> timeSlots) throws InvalidTimeSlotsException {
-        if (timeSlots == null) {
+    public TimeSlots(List<TimeSlot> slots) throws InvalidTimeSlotsException {
+        if (slots == null) {
             throw new InvalidTimeSlotsException("time slots is null");
         }
-        this.timeSlots = Collections.unmodifiableList(timeSlots);
+        this.slots = Collections.unmodifiableList(slots);
     }
 
     @Override
@@ -22,23 +22,24 @@ public class TimeSlots {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TimeSlots timeSlots1 = (TimeSlots) o;
-        return timeSlots.equals(timeSlots1.timeSlots);
+        return slots.equals(timeSlots1.slots);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timeSlots);
+        return Objects.hash(slots);
     }
 
     public TimeSlots gaps(TimeSlot boundary) throws InvalidTimeSlotException, InvalidTimeSlotsException {
-        if (timeSlots.isEmpty()) {
+        if (slots.isEmpty()) {
             return new TimeSlots(List.of(boundary));
         }
-        List<TimeSlot> slotGaps = new ArrayList<>();
-        List<TimeSlot> sortedTimeSlots = new ArrayList<>(timeSlots);
-        sortedTimeSlots.sort(TimeSlot::compareStartTimeTo);
 
-        TimeSlot firstSlot = sortedTimeSlots.get(0);
+        List<TimeSlot> slotGaps = new ArrayList<>();
+        List<TimeSlot> sortedSlots = new ArrayList<>(slots);
+        sortedSlots.sort(TimeSlot::compareStartTimeTo);
+
+        TimeSlot firstSlot = sortedSlots.get(0);
         TimeSlot firstGap = boundary.startTimeGap(firstSlot);
         if (firstGap != null) {
             slotGaps.add(firstGap);
@@ -46,8 +47,8 @@ public class TimeSlots {
 
         TimeSlot previousSlot = firstSlot;
 
-        for (int i = 1; i < sortedTimeSlots.size(); i++) {
-            TimeSlot currentSlot = sortedTimeSlots.get(i);
+        for (int i = 1; i < sortedSlots.size(); i++) {
+            TimeSlot currentSlot = sortedSlots.get(i);
 
             TimeSlot gap = previousSlot.gap(currentSlot);
             if (gap != null) {
@@ -57,7 +58,7 @@ public class TimeSlots {
             previousSlot = currentSlot;
         }
 
-        TimeSlot lastSlot = sortedTimeSlots.get(sortedTimeSlots.size() - 1);
+        TimeSlot lastSlot = sortedSlots.get(sortedSlots.size() - 1);
         TimeSlot lastGap = lastSlot.endTimeGap(boundary);
         if (lastGap != null) {
             slotGaps.add(lastGap);
