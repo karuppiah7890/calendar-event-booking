@@ -121,6 +121,15 @@ class TimeSlotTest {
 
             assertThat(isSubset, is(true));
         }
+
+        @Test
+        void returnsFalseWhenPassedTimeSlotIsNull() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+
+            boolean isSubset = timeSlot.isSubset(null);
+
+            assertThat(isSubset, is(false));
+        }
     }
 
     @Nested

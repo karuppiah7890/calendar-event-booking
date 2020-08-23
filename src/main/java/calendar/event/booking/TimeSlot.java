@@ -88,6 +88,10 @@ public class TimeSlot {
     }
 
     public boolean isSubset(TimeSlot anotherTimeSlot) {
+        if (anotherTimeSlot == null) {
+            return false;
+        }
+
         return (this.start.isAfter(anotherTimeSlot.start) ||
                 this.start.equals(anotherTimeSlot.start)) &&
                 (this.end.isBefore(anotherTimeSlot.end) ||
