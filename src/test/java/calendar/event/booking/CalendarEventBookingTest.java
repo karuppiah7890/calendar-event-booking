@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 
 class CalendarEventBookingTest {
     @Test
@@ -31,5 +32,26 @@ class CalendarEventBookingTest {
         TimeSlots freeTimeSlotsForMeeting = calendarEventBooking.freeTimeSlotsForMeeting();
 
         assertThat(freeTimeSlotsForMeeting, is(expectedFreeTimeSlots));
+    }
+
+    @Test
+    void returnsNullWhenThereAreNoFreeTimeSlotForMeetingDuration() throws InvalidTimeSlotException, InvalidTimeSlotsException {
+        TimeSlot firstBusySlot = new TimeSlot(LocalTime.parse("09:00"), LocalTime.parse("11:00"));
+        TimeSlot secondBusySlot = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("14:00"));
+        TimeSlot thirdBusySlot = new TimeSlot(LocalTime.parse("14:30"), LocalTime.parse("17:00"));
+        TimeSlots busySlotsOfOnePerson = new TimeSlots(List.of(firstBusySlot, secondBusySlot, thirdBusySlot));
+        TimeSlot fourthBusySlot = new TimeSlot(LocalTime.parse("09:00"), LocalTime.parse("11:00"));
+        TimeSlot fifthBusySlot = new TimeSlot(LocalTime.parse("11:45"), LocalTime.parse("15:00"));
+        TimeSlot sixthBusySlot = new TimeSlot(LocalTime.parse("15:30"), LocalTime.parse("17:00"));
+        TimeSlots busySlotsOfAnotherPerson = new TimeSlots(List.of(fourthBusySlot, fifthBusySlot, sixthBusySlot));
+        List<TimeSlots> busySlotsOfPeople = List.of(busySlotsOfOnePerson, busySlotsOfAnotherPerson);
+        Duration meetingDuration = Duration.ofHours(1);
+        TimeSlot workingHours = new TimeSlot(LocalTime.parse("09:00"), LocalTime.parse("17:00"));
+        CalendarEventBooking calendarEventBooking = new CalendarEventBooking(busySlotsOfPeople, meetingDuration,
+                workingHours);
+
+        TimeSlots freeTimeSlotsForMeeting = calendarEventBooking.freeTimeSlotsForMeeting();
+
+        assertThat(freeTimeSlotsForMeeting, is(nullValue()));
     }
 }

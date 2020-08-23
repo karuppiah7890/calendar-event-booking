@@ -308,3 +308,23 @@ Checked out these examples
 https://stackoverflow.com/questions/28353725/java-subtract-localtime#28353857
 http://tutorials.jenkov.com/java-date-time/duration.html
 https://mkyong.com/java8/java-8-period-and-duration-examples/
+
+---
+
+I realized I have used a lot of null in my program. I think I need to use
+Optional probably.
+
+https://duckduckgo.com/?t=ffab&q=optional+vs+null&ia=web&iax=qa
+https://stackoverflow.com/questions/28746482/optional-vs-null-what-is-the-purpose-of-optional-in-java-8
+https://stackoverflow.com/questions/23454952/uses-for-optional/
+https://www.geeksforgeeks.org/optional-ofnullable-method-in-java-with-examples/
+
+I can see lots of arguments to both sides, null and Optional, and some talk around
+performance and stuff.
+
+For now I'm going to defer it and go ahead with null. Later I'll think about converting
+to Optional based on what I find.
+
+---
+
+Gotta dig through null checks and possibilities of nulls in different places!

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 // TimeSlots represents a list of time slots or a collection
 // of time slots
@@ -15,6 +17,16 @@ public class TimeSlots {
             throw new InvalidTimeSlotsException("time slots is null");
         }
         this.slots = Collections.unmodifiableList(slots);
+    }
+
+    public TimeSlots filter(Predicate<? super TimeSlot> predicate) throws InvalidTimeSlotsException {
+        List<TimeSlot> filteredSlots = slots.stream().filter(predicate).collect(Collectors.toUnmodifiableList());
+
+        if (filteredSlots.isEmpty()) {
+            return null;
+        }
+
+        return new TimeSlots(filteredSlots);
     }
 
     @Override
