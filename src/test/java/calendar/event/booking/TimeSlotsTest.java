@@ -180,5 +180,16 @@ class TimeSlotsTest {
             assertThat(common, is(nullValue()));
             assertThat(anotherCommon, is(nullValue()));
         }
+
+        @Test
+        void returnsNullTimeSlotIsNull() throws InvalidTimeSlotException, InvalidTimeSlotsException {
+            TimeSlot firstTimeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot secondTimeSlot = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("13:00"));
+            TimeSlots timeSlots = new TimeSlots(List.of(firstTimeSlot, secondTimeSlot));
+
+            TimeSlots common = timeSlots.common(null);
+
+            assertThat(common, is(nullValue()));
+        }
     }
 }

@@ -92,6 +92,9 @@ public class TimeSlots {
     }
 
     public TimeSlots common(TimeSlots anotherTimeSlots) throws InvalidTimeSlotException, InvalidTimeSlotsException {
+        if (anotherTimeSlots == null) {
+            return null;
+        }
         List<TimeSlot> commonSlots = new ArrayList<>();
         for (TimeSlot slot : this.slots) {
             for (TimeSlot timeSlot : anotherTimeSlots.slots) {
