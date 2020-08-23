@@ -113,6 +113,9 @@ public class TimeSlot {
     }
 
     public boolean finishesBeforeStartingOf(TimeSlot anotherTimeSlot) {
+        if (anotherTimeSlot == null) {
+            return false;
+        }
         return this.end.isBefore(anotherTimeSlot.start) || this.end.equals(anotherTimeSlot.start);
     }
 
