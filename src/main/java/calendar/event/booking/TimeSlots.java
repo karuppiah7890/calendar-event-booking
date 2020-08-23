@@ -35,8 +35,16 @@ public class TimeSlots {
             return new TimeSlots(List.of(boundary));
         }
 
+        List<TimeSlot> slotsWithinBoundary = new ArrayList<>();
+        for (TimeSlot slot : slots) {
+            TimeSlot common = slot.common(boundary);
+            if (common != null) {
+                slotsWithinBoundary.add(common);
+            }
+        }
+
         List<TimeSlot> slotGaps = new ArrayList<>();
-        List<TimeSlot> sortedSlots = new ArrayList<>(slots);
+        List<TimeSlot> sortedSlots = new ArrayList<>(slotsWithinBoundary);
         sortedSlots.sort(TimeSlot::compareStartTimeTo);
 
         TimeSlot firstSlot = sortedSlots.get(0);

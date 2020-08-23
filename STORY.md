@@ -267,3 +267,19 @@ Try to reduce the size of all methods to 5 lines or so
 ---
 
 https://www.baeldung.com/java-iterate-list
+
+---
+
+It's possible that the time slots are outside the boundary. So,
+we need to get time slots within the boundary. How?
+
+Time Slot does not have anything in common with the boundary? Then chuck it.
+
+Time Slot is subset of boundary? Then keep it.
+
+TimeSlot and boundary have some partially common slot? Then have that partially common slot alone.
+
+Just do common method over all time slots with the boundary and store it maybe?
+That's better!! As common has all this logic!
+
+---

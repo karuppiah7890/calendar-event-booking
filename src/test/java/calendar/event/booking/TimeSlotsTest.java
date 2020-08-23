@@ -101,5 +101,26 @@ class TimeSlotsTest {
 
             assertThat(gaps, is(expectedGaps));
         }
+
+        @Test
+        void returnsGapsWhenTheInputTimeSlotsAreOutsideBoundaryToo() throws InvalidTimeSlotException, InvalidTimeSlotsException {
+            TimeSlot firstSlot = new TimeSlot(LocalTime.parse("10:20"), LocalTime.parse("10:30"));
+            TimeSlot secondSlot = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("12:30"));
+            TimeSlot thirdSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("11:45"));
+            TimeSlot fourthSlot = new TimeSlot(LocalTime.parse("09:00"), LocalTime.parse("10:20"));
+            TimeSlot fifthSlot = new TimeSlot(LocalTime.parse("08:00"), LocalTime.parse("08:30"));
+            TimeSlot sixthSlot = new TimeSlot(LocalTime.parse("14:00"), LocalTime.parse("15:00"));
+            TimeSlots timeSlots = new TimeSlots(List.of(firstSlot, secondSlot, thirdSlot,
+                    fourthSlot, fifthSlot, sixthSlot));
+            TimeSlot firstGap = new TimeSlot(LocalTime.parse("10:30"), LocalTime.parse("11:00"));
+            TimeSlot secondGap = new TimeSlot(LocalTime.parse("11:45"), LocalTime.parse("12:00"));
+            TimeSlot thirdGap = new TimeSlot(LocalTime.parse("12:30"), LocalTime.parse("13:00"));
+            TimeSlots expectedGaps = new TimeSlots(List.of(firstGap, secondGap, thirdGap));
+            TimeSlot boundary = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("13:00"));
+
+            TimeSlots gaps = timeSlots.gaps(boundary);
+
+            assertThat(gaps, is(expectedGaps));
+        }
     }
 }
