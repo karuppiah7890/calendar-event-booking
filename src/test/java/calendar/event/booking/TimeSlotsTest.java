@@ -143,4 +143,26 @@ class TimeSlotsTest {
             assertThat(gaps, is(expectedGaps));
         }
     }
+
+    @Nested
+    class Common {
+        @Test
+        void returnsCommonTimeSlots() throws InvalidTimeSlotException, InvalidTimeSlotsException {
+            TimeSlot firstTimeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+            TimeSlot secondTimeSlot = new TimeSlot(LocalTime.parse("12:00"), LocalTime.parse("13:00"));
+            TimeSlots timeSlots = new TimeSlots(List.of(firstTimeSlot, secondTimeSlot));
+            TimeSlot thirdTimeSlot = new TimeSlot(LocalTime.parse("10:30"), LocalTime.parse("11:30"));
+            TimeSlot fourthTimeSlot = new TimeSlot(LocalTime.parse("12:30"), LocalTime.parse("13:30"));
+            TimeSlots anotherTimeSlots = new TimeSlots(List.of(thirdTimeSlot, fourthTimeSlot));
+            TimeSlot firstExpectedSlot = new TimeSlot(LocalTime.parse("10:30"), LocalTime.parse("11:00"));
+            TimeSlot secondExpectedSlot = new TimeSlot(LocalTime.parse("12:30"), LocalTime.parse("13:00"));
+            TimeSlots expectedCommon = new TimeSlots(List.of(firstExpectedSlot, secondExpectedSlot));
+
+            TimeSlots common = timeSlots.common(anotherTimeSlots);
+            TimeSlots anotherCommon = anotherTimeSlots.common(timeSlots);
+
+            assertThat(common, is(expectedCommon));
+            assertThat(anotherCommon, is(expectedCommon));
+        }
+    }
 }

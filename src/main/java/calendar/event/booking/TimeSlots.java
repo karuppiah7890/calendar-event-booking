@@ -78,4 +78,17 @@ public class TimeSlots {
 
         return new TimeSlots(slotGaps);
     }
+
+    public TimeSlots common(TimeSlots anotherTimeSlots) throws InvalidTimeSlotException, InvalidTimeSlotsException {
+        List<TimeSlot> commonSlots = new ArrayList<>();
+        for (TimeSlot slot : this.slots) {
+            for (TimeSlot timeSlot : anotherTimeSlots.slots) {
+                TimeSlot common = slot.common(timeSlot);
+                if (common != null) {
+                    commonSlots.add(common);
+                }
+            }
+        }
+        return new TimeSlots(commonSlots);
+    }
 }
