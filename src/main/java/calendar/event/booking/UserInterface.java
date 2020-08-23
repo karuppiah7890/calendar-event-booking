@@ -54,6 +54,11 @@ public class UserInterface {
 
         TimeSlots freeTimeSlotsForMeeting = calendarEventBooking.freeTimeSlotsForMeeting();
 
+        if (freeTimeSlotsForMeeting == null) {
+            System.out.println("There are no free time slots available for the meeting!");
+            System.exit(0);
+        }
+
         System.out.println("Free time slots available for meeting are: ");
         System.out.println(freeTimeSlotsForMeeting.toString());
     }
