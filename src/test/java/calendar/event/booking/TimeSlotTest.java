@@ -192,7 +192,7 @@ class TimeSlotTest {
     }
 
     @Nested
-    class gap {
+    class Gap {
         @Test
         void returnsGapWhenThereIsOneGap() throws InvalidTimeSlotException {
             TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
