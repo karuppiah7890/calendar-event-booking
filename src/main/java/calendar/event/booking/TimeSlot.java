@@ -30,8 +30,12 @@ public class TimeSlot {
         this.end = timeSlot.end;
     }
 
+    private boolean doesNotHaveCommon(TimeSlot anotherTimeSlot) {
+        return this.finishesBeforeStartingOf(anotherTimeSlot) || anotherTimeSlot.finishesBeforeStartingOf(this);
+    }
+
     public TimeSlot common(TimeSlot anotherTimeSlot) throws InvalidTimeSlotException {
-        if (this.finishesBeforeStartingOf(anotherTimeSlot) || anotherTimeSlot.finishesBeforeStartingOf(this)) {
+        if (this.doesNotHaveCommon(anotherTimeSlot)) {
             return null;
         }
 
