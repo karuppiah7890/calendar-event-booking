@@ -253,7 +253,7 @@ https://stackoverflow.com/questions/23701943/sorting-arraylist-with-lambda-in-ja
 
 ---
 
-Get rid of getters in TimeSlot. For this:
+Get rid of getters in TimeSlot. For this we need:
 
 TimeSlot startTimeDifference method
 TimeSlot endTimeDifference method

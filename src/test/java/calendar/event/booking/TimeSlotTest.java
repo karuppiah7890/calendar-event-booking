@@ -1,5 +1,6 @@
 package calendar.event.booking;
 
+import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -216,6 +217,20 @@ class TimeSlotTest {
 
             assertThat(gap, is(nullValue()));
             assertThat(anotherGap, is(nullValue()));
+        }
+    }
+
+    @Nested
+    class StartTimeGap {
+        @Test
+        void returnsGapWhenThereIsOne() throws InvalidTimeSlotException {
+            TimeSlot timeSlot = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("13:00"));
+            TimeSlot anotherTimeSlot = new TimeSlot(LocalTime.parse("11:00"), LocalTime.parse("12:00"));
+            TimeSlot expectedStartTimeGap = new TimeSlot(LocalTime.parse("10:00"), LocalTime.parse("11:00"));
+
+            TimeSlot startTimeGap = timeSlot.startTimeGap(anotherTimeSlot);
+
+            assertThat(startTimeGap, is(expectedStartTimeGap));
         }
     }
 }
