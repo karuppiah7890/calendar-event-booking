@@ -319,10 +319,10 @@ https://stackoverflow.com/questions/28746482/optional-vs-null-what-is-the-purpos
 https://stackoverflow.com/questions/23454952/uses-for-optional/
 https://www.geeksforgeeks.org/optional-ofnullable-method-in-java-with-examples/
 
-I can see lots of arguments to both sides, null and Optional, and some talk around
+I can see lots of arguments to both sides - null and Optional, and some talk around
 performance and stuff.
 
-For now I'm going to defer it and go ahead with null. Later I'll think about converting
+For now, I'm going to defer it and go ahead with null. Later I'll think about converting
 to Optional based on what I find.
 
 ---

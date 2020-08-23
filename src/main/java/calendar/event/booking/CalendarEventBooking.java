@@ -28,6 +28,10 @@ public class CalendarEventBooking {
             commonFreeSlots = freeSlotsOfPerson.common(commonFreeSlots);
         }
 
+        if (commonFreeSlots == null) {
+            return null;
+        }
+
         return commonFreeSlots.filter(slot ->
                 meetingDuration.compareTo(slot.duration()) <= 0);
     }
